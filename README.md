@@ -13,8 +13,6 @@ Gramophone is an exploration of spotify's luigi using spotify's api data. This i
 
 ## Development set up
 
----
-
 Follow the instructions bellow to set up your development environment:
 
 0. _(Optional) Install poetry as in the [official docs](https://python-poetry.org/docs/)._
@@ -35,17 +33,15 @@ pre-commit install
 
 ## Usage
 
----
-
 TBD
 
-## To-Do
 
----
+## To-Do
 
 - [ ] Define testing workflow
 - [ ] Define documentation workflow
 - [ ] Setup repository [badges](https://shields.io/category/license)
+
 
 ## Contributing
 
