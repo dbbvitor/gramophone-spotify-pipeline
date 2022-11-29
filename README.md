@@ -49,6 +49,6 @@ Contributions are very welcome. Tests can be run with tox, please ensure the cov
 License
 
 Distributed under the terms of the `Apache 2.0` license, "Gramophone" is free and open source software
-Issues
+
 
 If you encounter any problems, please file an issue along with a detailed description.
