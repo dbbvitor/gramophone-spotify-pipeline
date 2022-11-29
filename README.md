@@ -19,7 +19,7 @@ Follow the instructions bellow to set up your development environment:
 1. Clone the repository: 
 ```bash
 git clone git@github.com:dbbvitor/gramophone-spotify-pipeline.git
-1. ```
+```
 2. Install this project dependencies: 
 ```bash
 poetry install
