@@ -46,9 +46,8 @@ TBD
 ## Contributing
 
 Contributions are very welcome. Tests can be run with tox, please ensure the coverage at least stays the same before you submit a pull request.
-License
 
-Distributed under the terms of the `Apache 2.0` license, "Gramophone" is free and open source software
+Distributed under the terms of the `Apache 2.0` license, "Gramophone" is free and open source software.
 
 
 If you encounter any problems, please file an issue along with a detailed description.
