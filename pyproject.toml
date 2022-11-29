@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "gramophone-spotify-pipeline"
+version = "0.1.0"
+description = "An exploration of spotify's luigi with spotify's data"
+authors = ["Me"]
+license = "Apache 2.0"
+readme = "README.md"
+packages = [{include = "gramophone_spotify_pipeline"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+luigi = {extras = ["toml"], version = "^3.1.1"}
+pandas = "^1.5.2"
+findspark = "^2.0.1"
+mkdocs = "^1.4.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.10.0"
+pytest = "^7.2.0"
+pre-commit = "^2.20.0"
+flake8 = "^6.0.0"
+isort = "^5.10.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
