@@ -5,7 +5,7 @@ description = "An exploration of spotify's luigi with spotify's data"
 authors = ["Me"]
 license = "Apache 2.0"
 readme = "README.md"
-packages = [{include = "gramophone_spotify_pipeline"}]
+packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
