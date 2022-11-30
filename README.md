@@ -39,6 +39,7 @@ TBD
 ## To-Do
 
 - [ ] Define testing workflow
+  - [ ] Setup deploy to docker hub
 - [ ] Define documentation workflow
 - [ ] Setup repository [badges](https://shields.io/category/license)
 
