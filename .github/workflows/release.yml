@@ -68,7 +68,7 @@ jobs:
       if: steps.cache-deps.cache-hit != 'true'
       run: |
         poetry config virtualenvs.in-project true
-        poetry install --no-interaction
+        poetry install --no-interaction --without dev,docs
     - name: Run tests
       run: |
         poetry add pytest --no-interaction
