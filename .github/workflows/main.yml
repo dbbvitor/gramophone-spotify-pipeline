@@ -62,7 +62,7 @@ jobs:
     - name: Run black linter
       run: |
         poetry add black --no-interaction
-        poetry run black
+        poetry run black src
     - name: Run flake8 linter
       run: |
         poetry add flake8 --no-interaction
