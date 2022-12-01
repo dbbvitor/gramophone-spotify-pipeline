@@ -80,7 +80,7 @@ jobs:
     - name: Run flake8 linter
       run: |
         poetry add flake8 --no-interaction
-        poetry run flake8 . --max-complexity=10 --max-line-length=120 --statistics
+        poetry run flake8 . --exclude '.github','.venv','.pytest_cache' --max-complexity=10 --max-line-length=120 --statistics
     - name: Build artifacts
       run: poetry build
     - name: Release Notes
