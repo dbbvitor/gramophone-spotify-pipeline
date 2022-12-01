@@ -30,7 +30,7 @@ jobs:
       uses: actions/cache@v2.1.5
       with:
         path: ~/.poetry
-        key: ${{ matrix.os }}-poetry
+        key: poetry
     # Only runs when key from caching step changes
     - name: Install latest version of Poetry
       if: steps.cache-poetry.outputs.cache-hit != 'true'
