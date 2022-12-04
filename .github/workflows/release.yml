@@ -35,3 +35,43 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.event.repository.name }}:latest
+
+  document:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Add Poetry to $PATH
+      run: echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+    - name: Cache Poetry
+      id: cache-poetry
+      uses: actions/cache@v3
+      with:
+        path: ~/.poetry
+        key: poetry
+    - name: Install latest version of Poetry
+      if: steps.cache-poetry.outputs.cache-hit != 'true'
+      run: curl -sSL https://install.python-poetry.org | python3 -
+    - name: Add Poetry to $PATH
+      run: echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+    - name: Get Poetry version
+      run: poetry --version
+    - name: Check pyproject.toml validity
+      run: poetry check --no-interaction
+    - name: Cache dependencies
+      id: cache-deps
+      uses: actions/cache@v3
+      with:
+        path: ${{github.workspace}}/.venv
+        key: ${{ hashFiles('**/poetry.lock') }}
+        restore-keys: ${{ hashFiles('**/poetry.lock') }}
+    - name: Install deps
+      if: steps.cache-deps.cache-hit != 'true'
+      run: |
+        poetry config virtualenvs.in-project true
+        poetry install --no-interaction --only docs
+    - name: Build site
+      run: poetry run mkdocs build
+    - name: Deploy docs
+      run: poetry run mkdocs gh-deploy --force --clean --verbose
