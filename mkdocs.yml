@@ -1,1 +1,12 @@
-site_name: My Docs
+site_name: Gramopohone
+site_description: Gramophone is an exploration of spotify's luigi using spotify's api data. This is also a DevOps exercise.
+site_author: Vítor F. Diniz (vitorfdiniz@gmail.com)
+theme: readthedocs
+site_url: https://dbbvitor.github.io/gramophone-spotify-pipeline/
+repo_url: https://github.com/dbbvitor/gramophone-spotify-pipeline
+edit_uri: edit/main/docs/
+
+nav:
+  - Introduction: 'index.md'
+  - Contributing: 'conrtibuting.md'
+  - 'Issue Tracker': 'https://github.com/dbbvitor/gramophone-spotify-pipeline/issues'
