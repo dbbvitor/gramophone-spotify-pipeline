@@ -1,13 +1,24 @@
-name: Python package
+name: Build and test python
 
-on:
-  push:
-    branches: [ "main" ]
+push:
+  paths-ignore:
+    - "docs/**"
+    - "*.md"
+
   pull_request:
-    branches: [ "main" ]
+    paths-ignore:
+      - "docs/**"
+      - "*.md"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
-  build:
+  test:
+    if:
+      github.event_name == 'push' || github.event.pull_request.head.repo.full_name !=
+      github.repository
 
     runs-on: ubuntu-latest
     strategy:
@@ -16,9 +27,7 @@ jobs:
         python-version: ["3.8", "3.9", "3.10"]
 
     steps:
-
     - uses: actions/checkout@v3
-
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
@@ -26,37 +35,13 @@ jobs:
         cache: "poetry"
     - run: poetry install --no-interaction
     - run: poetry install pytest pytest-cov black flake8 --no-interaction
-
     - name: Test with pytest
       run: poetry run pytest --cov .
-
     - name: Run black linter
       run: poetry run black src
-
     - name: Run flake8 linter
       run:
         poetry run flake8 . --exclude '.github','.venv','.pytest_cache' --max-complexity=10
         --max-line-length=120 --statistics
-
-    - name: Build package
-      run: poetry build
-
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
-
-    - name: Add version to environment vars
-      run: |
-        PROJECT_VERSION=$(poetry version --short)
-        echo "PROJECT_VERSION=$PROJECT_VERSION" >> $GITHUB_ENV
-
-    - name: Update tags
-      uses: actions/github-script@v6
-      with:
-        retries: 3
-        script: |
-          github.rest.git.createRef({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            ref: 'refs/tags/v${{ $PROJECT_VERSION }}',
-            sha: context.sha
-          })
