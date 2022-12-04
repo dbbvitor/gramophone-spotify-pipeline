@@ -3,12 +3,10 @@ Gramophone is an exploration of spotify's luigi using spotify's api data. This i
 
 
 [![Build status](https://github.com/dbbvitor/gramophone-spotify-pipeline/actions/workflows/main.yml/badge.svg)](https://github.com/TezRomacH/python-package-template/actions?query=workflow%3Abuild)
-[![Dependencies Status](https://img.shields.io/librariesio/github/dbbvitor/gramophone-spotify-pipeline?label=dependencies)](https://github.com/TezRomacH/python-package-template/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Aapp%2Fdependabot)
-
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![codecov](https://codecov.io/gh/dbbvitor/gramophone-spotify-pipeline/branch/main/graph/badge.svg?token=1DYIRMY85A)](https://codecov.io/gh/dbbvitor/gramophone-spotify-pipeline)
 [![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/dbbvitor/gramophone-spotify-pipeline/blob/main/.pre-commit-config.yaml)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![License](https://img.shields.io/github/license/dbbvitor/gramophone-spotify-pipeline?label=license)](https://github.com/dbbvitor/gramophone-spotify-pipeline/blob/main/LICENSE)
-![Coverage Report](assets/images/coverage.svg)
 
 
 ## Development set up
@@ -38,10 +36,8 @@ TBD
 
 ## To-Do
 
-- [ ] Define testing workflow
-  - [ ] Setup deploy to docker hub
+
 - [ ] Define documentation workflow
-- [ ] Setup repository [badges](https://shields.io/category/license)
 
 
 ## Contributing
