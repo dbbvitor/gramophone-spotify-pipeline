@@ -58,7 +58,7 @@ jobs:
     - name: Run tests
       run: |
         poetry add pytest pytest-cov --no-interaction
-        poetry run pytest --cov=./src --cov-report xml
+        poetry run pytest --cov .
     - name: Run black linter
       run: |
         poetry add black --no-interaction
@@ -69,8 +69,5 @@ jobs:
         poetry run flake8 . --exclude '.github','.venv','.pytest_cache' --max-complexity=10 --max-line-length=120 --statistics
     - name: Build artifacts
       run: poetry build
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: coverage.xml
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
