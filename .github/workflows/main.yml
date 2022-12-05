@@ -58,18 +58,23 @@ jobs:
         retries: 3
         script: |
           try {
-            github.rest.git.createRef({
+            await github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: 'refs/tags/v${{ env.PROJECT_VERSION }}',
               sha: context.sha
-            })
-          } catch {
-            github.rest.git.updateRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: 'refs/tags/v${{ env.PROJECT_VERSION }}',
-              sha: context.sha
-            })
+            });
+          } catch (e) {
+            if ( e instanceof Error && e.status === 422 ) {
+              console.log("Tag already exists: " + e)
+              await github.rest.git.updateRef({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: 'refs/tags/v${{ env.PROJECT_VERSION }}',
+                sha: context.sha,
+                force: true
+              });
+            } else {
+              console.log("Tag already exists: " + e);
+            }
           }
-          
