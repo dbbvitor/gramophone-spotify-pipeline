@@ -16,7 +16,7 @@ Gramophone is an exploration of spotify's luigi using spotify's api data. This i
 
 Follow the instructions bellow to set up your development environment:
 
-0. _(Optional) Install poetry as in the [official docs](https://python-poetry.org/docs/)._
+0. _(Optional) Install [poetry](https://python-poetry.org/docs/)._
 1. Clone the repository: 
 ```bash
 git clone git@github.com:dbbvitor/gramophone-spotify-pipeline.git
@@ -34,7 +34,7 @@ pre-commit install
 
 ## Usage
 
-TBD
+You can know more at our [documentation](https://dbbvitor.github.io/gramophone-spotify-pipeline/).
 
 
 ## Project layout
