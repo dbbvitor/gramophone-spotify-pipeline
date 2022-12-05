@@ -2,7 +2,7 @@ name: Python releases
 
 on:
   release:
-    types: [published]
+    types: [ published, edited ]
 
 jobs:
   docker:
