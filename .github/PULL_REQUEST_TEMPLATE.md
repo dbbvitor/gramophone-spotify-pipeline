@@ -5,4 +5,3 @@ Thank you for opening a Pull Request! Before submitting your PR, there are a few
 - [ ] Appropriate docs were updated (if necessary)
 
 Fixes #<issue_number_goes_here> 🦕
-Footer

@@ -1,6 +1,5 @@
-def say_hello():
-    print("Hello world!!")
+from hello.world import HelloWorld
 
 
 if __name__ == "__main__":
-    say_hello()
+    HelloWorld().say_hello()
