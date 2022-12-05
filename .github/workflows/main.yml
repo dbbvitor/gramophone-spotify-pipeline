@@ -57,9 +57,19 @@ jobs:
       with:
         retries: 3
         script: |
-          github.rest.git.createRef({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            ref: 'refs/tags/v${{ env.PROJECT_VERSION }}',
-            sha: context.sha
-          })
+          try {
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v${{ env.PROJECT_VERSION }}',
+              sha: context.sha
+            })
+          } catch {
+            github.rest.git.updateRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v${{ env.PROJECT_VERSION }}',
+              sha: context.sha
+            })
+          }
+          
