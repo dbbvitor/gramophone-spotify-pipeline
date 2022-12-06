@@ -58,5 +58,26 @@ jobs:
       - name: Build site
         run: poetry run mkdocs build
 
-      - name: Deploy docs
-        run: poetry run mkdocs gh-deploy --force --clean --verbose
+      - name: Install semver tag dependency
+        run: npm install semver
+
+      - name: Get latest release tag
+        id: latest-release
+        uses: actions/github-script@v6
+        with:
+          scripts: |
+            const semver = require('semver')
+            const response = await github.repos.listReleases({owner: context.repo.owner, repo: context.repo.repo});
+            const releases = response.data.filter(release => semver.valid(release.tag_name));
+            const latestRelease = semver.maxSatisfying(releases.map(release => release.tag_name), '*');
+            const regex = /^([^.]*\.[^.]*)/;
+            const latestReleaseTag = latestRelease.tag_name.match(regex)[0];
+            console.log("Latest semver tag: " + latestReleaseTag);
+
+      - name: Deploy docs latest
+        if: ${{ github.ref_name == steps.latest-release.outputs.latestReleaseTag }}
+        run: poetry run mike deploy --push --update-aliases ${{ steps.latest-release.outputs.latestReleaseTag }} latest
+
+      - name: Deploy docs latest
+        if: ${{ github.ref_name != steps.latest-release.outputs.latestReleaseTag }}
+        run: poetry run mike deploy --push ${{ steps.latest-release.outputs.latestReleaseTag }}

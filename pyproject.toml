@@ -2,7 +2,7 @@
 name = "gramophone-spotify-pipeline"
 version = "0.1.2"
 description = "An exploration of spotify's luigi with spotify's data"
-authors = ["Me"]
+authors = ["Vítor F. Diniz <vitorfdiniz@gmail.com>"]
 license = "Apache 2.0"
 readme = "README.md"
 packages = [{include = "src"}]
@@ -30,6 +30,7 @@ optional = true
 [tool.poetry.group.docs.dependencies]
 mkdocstrings = {version = "^0.19.0", extras = ["python"]}
 mkdocs-material = "^8.5.11"
+mike = "^1.1.2"
 
 [build-system]
 requires = ["poetry-core"]
