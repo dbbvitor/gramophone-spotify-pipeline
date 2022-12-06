@@ -27,7 +27,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         cache: "poetry"
-    - run: poetry install --no-interaction
+    - run: poetry install --no-interaction --with docs
     - run: poetry add pytest pytest-cov black flake8 --no-interaction
 
     - name: Test with pytest
