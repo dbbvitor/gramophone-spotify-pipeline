@@ -71,7 +71,7 @@ jobs:
             const releases = response.data.filter(release => semver.valid(release.tag_name));
             const latestRelease = semver.maxSatisfying(releases.map(release => release.tag_name), '*');
             const regex = /^([^.]*\.[^.]*)/;
-            const latestReleaseTag = latestRelease.tag_name.match(regex)[0];
+            const latestReleaseTag = latestRelease?.tag_name?.match(regex)[0];
             console.log("Latest semver tag: " + latestReleaseTag);
 
       - name: Deploy docs latest
