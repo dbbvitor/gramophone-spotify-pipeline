@@ -69,7 +69,7 @@ jobs:
             try {
               const semver = require('semver');
               const release = await github.repos.listReleases({owner: context.repo.owner, repo: context.repo.repo});
-              const tags = releases.map(release => release.tag_name);
+              const tags = release.map(release => release.tag_name);
               const latestTag = semver.maxSatisfying(tags, '*');
               const majorMinor = "v" + semver.major(latestTag) + "." semver.minor(latestTag);
               console.log("Latest semver tag: " + majorMinor);
