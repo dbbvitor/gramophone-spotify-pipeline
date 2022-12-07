@@ -72,16 +72,16 @@ jobs:
               const tags = releases.map(release => release.tag_name);
               const latestTag = semver.maxSatisfying(tags, '*');
               const majorMinor = "v" + semver.major(latestTag) + "." semver.minor(latestTag);
-              console.log("Latest semver tag: " + latestReleaseTag);
+              console.log("Latest semver tag: " + majorMinor);
             } catch (err) {
               console.error(err);
               fail("Error occurred while getting the latest tag: " + err.message);
             }
 
       - name: Deploy docs latest
-        if: ${{ github.ref_name == steps.latest-release.outputs.latestReleaseTag }}
-        run: poetry run mike deploy --push --update-aliases ${{ steps.latest-release.outputs.latestReleaseTag }} latest
+        if: ${{ github.ref_name == steps.latest-release.outputs.majorMinor }}
+        run: poetry run mike deploy --push --update-aliases ${{ steps.latest-release.outputs.majorMinor }} latest
 
       - name: Deploy docs latest
-        if: ${{ github.ref_name != steps.latest-release.outputs.latestReleaseTag }}
-        run: poetry run mike deploy --push ${{ steps.latest-release.outputs.latestReleaseTag }}
+        if: ${{ github.ref_name != steps.latest-release.outputs.majorMinor }}
+        run: poetry run mike deploy --push ${{ steps.latest-release.outputs.majorMinor }}
