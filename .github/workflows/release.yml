@@ -70,7 +70,7 @@ jobs:
               const semver = require('semver');
               const releases = await github.rest.repos.listReleases({owner: context.repo.owner, repo: context.repo.repo});
               let tags;
-              if (Array.isArray(result.data)) {
+              if (Array.isArray(releases.data)) {
                 tags = releases.data.map(release => release.tag_name);
               } else {
                 tags = [releases.data.tag_name];
