@@ -66,6 +66,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
+            let majorMinor;
             try {
               const semver = require('semver');
               const releases = await github.rest.repos.listReleases({owner: context.repo.owner, repo: context.repo.repo});
@@ -76,7 +77,7 @@ jobs:
                 tags = [releases.data.tag_name];
               }
               const latestTag = semver.maxSatisfying(tags, '*');
-              const majorMinor = "v" + semver.major(latestTag) + "." + semver.minor(latestTag);
+              majorMinor = "v" + semver.major(latestTag) + "." + semver.minor(latestTag);
               console.log("Latest semver tag: " + majorMinor);
             } catch (err) {
               console.error(err);
