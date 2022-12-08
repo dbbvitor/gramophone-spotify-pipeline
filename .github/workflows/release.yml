@@ -78,14 +78,17 @@ jobs:
             const majorMinor = "v" + semver.major(latestTag) + "." + semver.minor(latestTag);
             console.log("Latest semver tag: " + majorMinor);
 
-      - name: Deploy docs latest
-        if: ${{ github.ref_name == steps.latest-release.outputs.majorMinor }}
-        run: |
-          echo "Latest release is: ${{ steps.latest-release.outputs.majorMinor }}"
-          poetry run mike deploy --push --update-aliases ${{ github.ref_name }} latest
+      - name: Get current tag
+        run: echo "CURRENT_TAG=$git tag | sort --version-sort | tail -n1 | grep -Po '^([^.]\.[^.])')" >> $GITHUB_ENV
 
       - name: Deploy docs latest
-        if: ${{ github.ref_name != steps.latest-release.outputs.majorMinor }}
+        if: ${{ env.CURRENT_TAG == steps.latest-release.outputs.majorMinor }}
         run: |
-          echo "Latest release is: ${{ steps.latest-release.outputs.majorMinor }}.\nCurrent push is: ${{ github.ref_name }}"
-          poetry run mike deploy --push ${{ github.ref_name }}
+          echo "Latest release is: ${{ steps.latest-release.outputs.majorMinor }}"
+          poetry run mike deploy --push --update-aliases ${{ env.CURRENT_TAG }} latest
+
+      - name: Deploy docs latest
+        if: ${{ env.CURRENT_TAG != steps.latest-release.outputs.majorMinor }}
+        run: |
+          echo "Latest release is: ${{ steps.latest-release.outputs.majorMinor }}.\nCurrent push is: ${{ env.CURRENT_TAG }}"
+          poetry run mike deploy --push ${{ env.CURRENT_TAG }}
