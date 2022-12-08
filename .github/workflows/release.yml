@@ -69,10 +69,11 @@ jobs:
             try {
               const semver = require('semver');
               const releases = await github.rest.repos.listReleases({owner: context.repo.owner, repo: context.repo.repo});
+              let tags;
               if (typeof releases === 'array') {
-                const tags = releases.map(release => release.tag_name);
+                tags = releases.map(release => release.tag_name);
               } else {
-                const tags = [releases.tag_name];
+                tags = [releases.tag_name];
               }
               const latestTag = semver.maxSatisfying(tags, '*');
               const majorMinor = "v" + semver.major(latestTag) + "." + semver.minor(latestTag);
