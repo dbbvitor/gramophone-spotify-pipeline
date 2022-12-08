@@ -66,28 +66,26 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            let majorMinor;
-            try {
-              const semver = require('semver');
-              const releases = await github.rest.repos.listReleases({owner: context.repo.owner, repo: context.repo.repo});
-              let tags;
-              if (Array.isArray(releases.data)) {
-                tags = releases.data.map(release => release.tag_name);
-              } else {
-                tags = [releases.data.tag_name];
-              }
-              const latestTag = semver.maxSatisfying(tags, '*');
-              majorMinor = "v" + semver.major(latestTag) + "." + semver.minor(latestTag);
-              console.log("Latest semver tag: " + majorMinor);
-            } catch (err) {
-              console.error(err);
-              fail("Error occurred while getting the latest tag: " + err.message);
+            const semver = require('semver');
+            const releases = await github.rest.repos.listReleases({owner: context.repo.owner, repo: context.repo.repo});
+            let tags;
+            if (Array.isArray(releases.data)) {
+              tags = releases.data.map(release => release.tag_name);
+            } else {
+              tags = [releases.data.tag_name];
             }
+            const latestTag = semver.maxSatisfying(tags, '*');
+            const majorMinor = "v" + semver.major(latestTag) + "." + semver.minor(latestTag);
+            console.log("Latest semver tag: " + majorMinor);
 
       - name: Deploy docs latest
         if: ${{ github.ref_name == steps.latest-release.outputs.majorMinor }}
-        run: poetry run mike deploy --push --update-aliases ${{ steps.latest-release.outputs.majorMinor }} latest
+        run: |
+          echo "Latest release is: ${{ steps.latest-release.outputs.majorMinor }}"
+          poetry run mike deploy --push --update-aliases ${{ github.ref_name }} latest
 
       - name: Deploy docs latest
         if: ${{ github.ref_name != steps.latest-release.outputs.majorMinor }}
-        run: poetry run mike deploy --push ${{ steps.latest-release.outputs.majorMinor }}
+        run: |
+          echo "Latest release is: ${{ steps.latest-release.outputs.majorMinor }}.\nCurrent push is: ${{ github.ref_name }}"
+          poetry run mike deploy --push ${{ github.ref_name }}
