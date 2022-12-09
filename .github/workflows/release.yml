@@ -91,7 +91,7 @@ jobs:
           echo "Latest release is: ${{ steps.latest-release.outputs.result }}"
           poetry run mike deploy --push --update-aliases ${{ env.CURRENT_TAG }} latest
 
-      - name: Deploy docs not latest
+      - name: Deploy docs no alias
         if: ${{ env.CURRENT_TAG != steps.latest-release.outputs.result }}
         run: |
           echo "Latest release is: ${{ steps.latest-release.outputs.result }}. Current push is: ${{ env.CURRENT_TAG }}"
