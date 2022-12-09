@@ -81,3 +81,9 @@ jobs:
               console.log("Tag already exists: " + e);
             }
           }
+
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v3
+      with:
+        name: python-package
+        path: dist/*-${{ env.PROJECT_VERSION }}.tar.gz
