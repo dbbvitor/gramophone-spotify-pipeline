@@ -31,7 +31,7 @@ jobs:
     - run: poetry add pytest pytest-cov black flake8 --no-interaction
 
     - name: Test with pytest
-      run: poetry run pytest --cov .
+      run: poetry run pytest --cov src --cov-report xml
 
     - name: Run black linter
       run: poetry run black src
@@ -81,3 +81,9 @@ jobs:
               console.log("Tag already exists: " + e);
             }
           }
+
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v3
+      with:
+        name: python-package
+        path: dist/*-${{ env.PROJECT_VERSION }}.tar.gz

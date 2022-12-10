@@ -12,8 +12,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
 
     - name: Login to Docker Hub
       uses: docker/login-action@v2
@@ -44,6 +42,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup git user
+        run: |
+          date > generated.txt
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
 
       - name: Install poetry
         run: pipx install poetry
@@ -66,26 +72,33 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            try {
-              const semver = require('semver');
-              const releases = await github.rest.repos.listReleases({owner: context.repo.owner, repo: context.repo.repo});
-              if (typeof releases === 'array') {
-                const tags = releases.map(release => release.tag_name);
-              } else {
-                const tags = [releases.tag_name];
-              }
-              const latestTag = semver.maxSatisfying(tags, '*');
-              const majorMinor = "v" + semver.major(latestTag) + "." + semver.minor(latestTag);
-              console.log("Latest semver tag: " + majorMinor);
-            } catch (err) {
-              console.error(err);
-              fail("Error occurred while getting the latest tag: " + err.message);
+            const semver = require('semver');
+            const releases = await github.rest.repos.listReleases({owner: context.repo.owner, repo: context.repo.repo});
+            let tags;
+            if (Array.isArray(releases.data)) {
+              tags = releases.data.map(release => release.tag_name);
+            } else {
+              tags = [releases.data.tag_name];
             }
+            const latestTag = semver.maxSatisfying(tags, '*');
+            const majorMinor = "v" + semver.major(latestTag) + "." + semver.minor(latestTag);
+            console.log("Latest semver tag: " + majorMinor);
+            return majorMinor
+          result-encoding: string
+
+      - name: Get current tag
+        run: |
+          CURRENT_TAG=$(git tag | sort --version-sort | tail -n1 | grep -Po '^([^.]*\.[^.]*)')
+          echo "CURRENT_TAG=$CURRENT_TAG" >> $GITHUB_ENV
 
       - name: Deploy docs latest
-        if: ${{ github.ref_name == steps.latest-release.outputs.majorMinor }}
-        run: poetry run mike deploy --push --update-aliases ${{ steps.latest-release.outputs.majorMinor }} latest
+        if: ${{ env.CURRENT_TAG == steps.latest-release.outputs.result }}
+        run: |
+          echo "Latest release is: ${{ steps.latest-release.outputs.result }}"
+          poetry run mike deploy --push --update-aliases ${{ env.CURRENT_TAG }} latest
 
-      - name: Deploy docs latest
-        if: ${{ github.ref_name != steps.latest-release.outputs.majorMinor }}
-        run: poetry run mike deploy --push ${{ steps.latest-release.outputs.majorMinor }}
+      - name: Deploy docs no alias
+        if: ${{ env.CURRENT_TAG != steps.latest-release.outputs.result }}
+        run: |
+          echo "Latest release is: ${{ steps.latest-release.outputs.result }}. Current push is: ${{ env.CURRENT_TAG }}"
+          poetry run mike deploy --push ${{ env.CURRENT_TAG }}
