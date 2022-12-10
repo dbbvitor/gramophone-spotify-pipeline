@@ -82,7 +82,7 @@ jobs:
             }
           }
 
-    - name: Archive code coverage results
+    - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: python-package
