@@ -43,6 +43,7 @@ body:
         Add a new parameter to DataFrame, to_series, to return a Series if possible.
 
         ```python
+        
         def __init__(self, ..., to_series: bool=False):
             """
             Parameters
@@ -54,6 +55,7 @@ body:
             """
             if to_series:
                 return Series(data)
+        
         ```
     validations:
       required: true
@@ -69,9 +71,11 @@ body:
         Write a custom function to return a Series when possible.
 
         ```python
+        
         def to_series(...)
            result = pd.DataFrame(...)
            ...
+        
         ```
     validations:
       required: true

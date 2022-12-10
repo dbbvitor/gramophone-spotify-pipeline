@@ -1,7 +1,7 @@
 name: Bug Report
 description: Create a report to help us improve.
 title: "BUG: "
-labels: [bug, Needs Triage]
+labels: [Bug, Needs Triage]
 
 body:
   - type: markdown
@@ -38,9 +38,11 @@ body:
         provide a minimal, copy-pastable example.
       placeholder: >
         ```python
+        
         import XXX
 
         do something...
+        
         ```
       render: python
     validations:
@@ -68,7 +70,9 @@ body:
         Please paste the output of ``python --version``
       value: >
         - OS type and version:
+        
         - Python version: `python --version`
+        
         - Gramophone version: 
     validations:
       required: true
