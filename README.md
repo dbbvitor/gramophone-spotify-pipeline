@@ -69,3 +69,12 @@ Distributed under the terms of the `Apache 2.0` license, "Gramophone" is free an
 
 
 If you encounter any problems, please file an issue along with a detailed description.
+
+## Relevant links
+
+Here is a few links relevant to this project in no particular order:
+
+- [Convetional commits](https://www.conventionalcommits.org)
+- [Semantic versioning](https://semver.org/)
+- [Spotify's Luigi](https://github.com/spotify/luigi)
+- [Spotify's API](https://developer.spotify.com/documentation/)

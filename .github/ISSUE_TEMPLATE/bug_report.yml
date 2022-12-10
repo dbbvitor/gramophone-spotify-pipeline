@@ -1,0 +1,81 @@
+name: Bug Report
+description: Create a report to help us improve.
+title: "BUG: "
+labels: [bug, Needs Triage]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for stopping by to let us know something could be better!
+        Before submitting please make sure that there isn't an issue already opened: https://github.com/dbbvitor/gramophone-spotify-pipeline/issues
+        If you are still having issues, please be sure to include as much information as possible:
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Issue Description
+      description: >
+        Please provide a description of the issue shown in the reproducible example.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: >
+        Please describe or show a code example of the expected behavior.
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Reproducible Example
+      description: >
+        Please follow [this guide](https://matthewrocklin.com/blog/work/2018/02/28/minimal-bug-reports) on how to
+        provide a minimal, copy-pastable example.
+      placeholder: >
+        ```python
+        import XXX
+
+        do something...
+        ```
+      render: python
+    validations:
+      required: true
+
+  - type: textarea
+    id: stack-trace
+    attributes:
+      label: Stack Trace
+      description: >
+        Please copy and paste the stack trace of the error.
+      placeholder: >
+        Traceback (most recent call last):
+
+        ...
+      render: python
+    validations:
+      required: true
+
+  - type: textarea
+    id: version
+    attributes:
+      label: Installed Versions
+      description: >
+        Please paste the output of ``python --version``
+      value: >
+        - OS type and version:
+        - Python version: `python --version`
+        - Gramophone version: 
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        Making sure to follow these steps will guarantee the quickest resolution possible.
+        
+        Thanks!

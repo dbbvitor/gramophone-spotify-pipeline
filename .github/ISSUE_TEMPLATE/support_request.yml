@@ -1,0 +1,22 @@
+name: Support request
+description: Ask for help.
+title: "QST: "
+labels: [Question, Needs Triage]
+
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Thanks for stopping by and showing interest in this project. You may ask for anything related to this project.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question about this project
+      description: >
+        Please ask for anything as long as it's related to this project and is neither
+        a feature request nor bug report.
+      placeholder: |
+        ```python
+        # Your code here, if applicable
+        ```

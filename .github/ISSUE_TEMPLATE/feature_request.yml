@@ -1,0 +1,85 @@
+name: Feature Request
+description: Suggest an idea for this library.
+title: "ENH: "
+labels: [Enhancement, Needs Triage]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for stopping by to let us know something could be better!
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Feature Type
+      description: Please check what type of feature request you would like to propose.
+      options:
+        - label: >
+            Adding new functionality.
+        - label: >
+            Changing existing functionality.
+        - label: >
+            Removing existing functionality.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem Description
+      description: >
+        Please describe what problem the feature would solve, e.g. "I'm always frustrated when ..."
+      placeholder: >
+        I'm always frustrated when ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: feature
+    attributes:
+      label: Feature Description
+      description: >
+        Please describe how the new feature would be implemented, using psudocode if relevant.
+      placeholder: >
+        Add a new parameter to DataFrame, to_series, to return a Series if possible.
+
+        ```python
+        def __init__(self, ..., to_series: bool=False):
+            """
+            Parameters
+            ----------
+            ...
+
+            to_series : bool, default False
+                Return a Series if possible
+            """
+            if to_series:
+                return Series(data)
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternative
+    attributes:
+      label: Alternative Solutions
+      description: >
+        Please describe any alternative solution (existing functionality, 3rd party package, etc.)
+        that would satisfy the feature request.
+      placeholder: >
+        Write a custom function to return a Series when possible.
+
+        ```python
+        def to_series(...)
+           result = pd.DataFrame(...)
+           ...
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: >
+        Please provide any relevant GitHub issues, code examples, references or screenshots that help describe and support
+        the feature request.
