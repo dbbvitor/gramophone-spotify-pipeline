@@ -51,7 +51,11 @@ pythonpath = [ "src" ]
 addopts = [ "--import-mode=importlib" ]
 
 [tool.coverage.report]
-exclude_lines = [ "if __name__ == .__main__.:" ]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "@abstract"
+]
 
 [tool.mypy]
 mypy_path = [ "src" ]
