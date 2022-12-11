@@ -79,5 +79,6 @@ Before collaborating, here is a few links relevant to this project in no particu
 - [Semantic versioning](https://semver.org/)
 - [Github Flow](https://warcontent.com/github-flow/)
 - [Docstring Convention](https://peps.python.org/pep-0257/)
+- [Docstring Style](https://google.github.io/styleguide/pyguide.html)
 - [Spotify's Luigi](https://github.com/spotify/luigi)
 - [Spotify's API](https://developer.spotify.com/documentation/)
