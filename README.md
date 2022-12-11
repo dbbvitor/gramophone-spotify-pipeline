@@ -1,4 +1,4 @@
-**# Gramophone
+# Gramophone
 Gramophone is an exploration of spotify's luigi using spotify's api data. This is also a DevOps exercise.
 
 
