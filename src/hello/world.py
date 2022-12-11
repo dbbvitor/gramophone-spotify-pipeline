@@ -1,8 +1,10 @@
-class HelloWorld:
-    """This class serves no purpose."""
+"""This is an example of a module containing some implementation related to `world`."""
 
-    def say_hello(self) -> None:
-        """
-        This is our first function. It prints `Hello world!!`.
-        """
+
+class HelloWorld:
+    """Houses the say_hello example function."""
+
+    @staticmethod
+    def say_hello() -> None:
+        """Print `Hello world!!`. Nothing else."""
         print("Hello world!!")

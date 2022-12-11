@@ -65,18 +65,19 @@ You can know more at our [documentation](https://dbbvitor.github.io/gramophone-s
 
 ## Contributing
 
-Contributions are very welcome. Tests can be run with tox, please ensure the coverage at least stays the same before you submit a pull request.
+Contributions are very welcome. Please set up the pre-commit hooks before opening a pull request.
 
 Distributed under the terms of the `Apache 2.0` license, "Gramophone" is free and open source software.
 
-
 If you encounter any problems, please file an issue along with a detailed description.
 
-## Relevant links
+### Relevant links
 
-Here is a few links relevant to this project in no particular order:
+Before collaborating, here is a few links relevant to this project in no particular order:
 
 - [Convetional commits](https://www.conventionalcommits.org)
 - [Semantic versioning](https://semver.org/)
+- [Github Flow](https://warcontent.com/github-flow/)
+- [Docstring Convention](https://peps.python.org/pep-0257/)
 - [Spotify's Luigi](https://github.com/spotify/luigi)
-- [Spotify's API](https://developer.spotify.com/documentation/)**
+- [Spotify's API](https://developer.spotify.com/documentation/)
