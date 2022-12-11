@@ -1,7 +1,7 @@
-from src.hello import main
+from hello import __main__
 
 
 def test_main(capfd):
-    main.main()
+    __main__.main()
     out, err = capfd.readouterr()
     assert out == "Hello world!!\n"

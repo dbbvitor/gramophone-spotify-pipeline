@@ -1,4 +1,4 @@
-# Gramophone
+**# Gramophone
 Gramophone is an exploration of spotify's luigi using spotify's api data. This is also a DevOps exercise.
 
 
@@ -19,17 +19,17 @@ Gramophone is an exploration of spotify's luigi using spotify's api data. This i
 Follow the instructions bellow to set up your development environment:
 
 0. _(Optional) Install [poetry](https://python-poetry.org/docs/)._
-1. Clone the repository: 
+1. Clone the repository:
 ```bash
 git clone git@github.com:dbbvitor/gramophone-spotify-pipeline.git
 ```
-2. Install this project dependencies: 
+2. Install this project dependencies:
 ```bash
 poetry install
 ```
 3. Set up the pre-commit hooks
 ```bash
-pre-commit install 
+pre-commit install
 ```
 4. Code away!
 
@@ -65,18 +65,19 @@ You can know more at our [documentation](https://dbbvitor.github.io/gramophone-s
 
 ## Contributing
 
-Contributions are very welcome. Tests can be run with tox, please ensure the coverage at least stays the same before you submit a pull request.
+Contributions are very welcome. Please set up the pre-commit hooks before opening a pull request.
 
 Distributed under the terms of the `Apache 2.0` license, "Gramophone" is free and open source software.
 
-
 If you encounter any problems, please file an issue along with a detailed description.
 
-## Relevant links
+### Relevant links
 
-Here is a few links relevant to this project in no particular order:
+Before collaborating, here is a few links relevant to this project in no particular order:
 
 - [Convetional commits](https://www.conventionalcommits.org)
 - [Semantic versioning](https://semver.org/)
+- [Github Flow](https://warcontent.com/github-flow/)
+- [Docstring Convention](https://peps.python.org/pep-0257/)
 - [Spotify's Luigi](https://github.com/spotify/luigi)
 - [Spotify's API](https://developer.spotify.com/documentation/)

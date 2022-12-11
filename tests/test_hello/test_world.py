@@ -1,4 +1,4 @@
-from src.hello import world
+from hello import world
 
 
 def test_say_hello(capfd):
