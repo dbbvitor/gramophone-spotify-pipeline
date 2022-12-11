@@ -5,24 +5,41 @@ site_url: https://dbbvitor.github.io/gramophone-spotify-pipeline/
 repo_url: https://github.com/dbbvitor/gramophone-spotify-pipeline
 edit_uri: edit/main/docs/
 
+
 theme:
   name: material
   custom_dir: docs/overrides
 
+
 plugins:
 - search
+- gen-files:
+    scripts:
+    - docs/gen_ref_pages.py
+- literate-nav:
+    nav_file: SUMMARY.md
+- section-index
 - mkdocstrings:
     handlers:
       python:
         paths: [ src ]
+
+
+markdown_extensions:
+- pymdownx.highlight:
+    use_pygments: true
+    pygments_lang_class: true
+
 
 # Customization
 extra:
   version:
     provider: mike
 
+
 nav:
   - Introduction: 'index.md'
-  - Functions: 'code.md'
+  - Code Reference: reference/
+#  - Functions: 'code.md'
   - Contributing: 'conrtibuting.md'
   - 'Issue Tracker': 'https://github.com/dbbvitor/gramophone-spotify-pipeline/issues'
