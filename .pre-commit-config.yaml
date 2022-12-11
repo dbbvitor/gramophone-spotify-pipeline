@@ -51,6 +51,7 @@ repos:
           - "--install-types"
           - "--non-interactive"
           - "--pretty"
+          - "--ignore-missing-imports"
 
   - repo: https://github.com/pycqa/pydocstyle
     rev: 6.1.1
