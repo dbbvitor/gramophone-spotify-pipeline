@@ -6,7 +6,8 @@ authors = ["Vítor F. Diniz <vitorfdiniz@gmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"
 packages = [
-    { include = "hello", from = "src" }
+    { include = "hello", from = "src" },
+    { include = "hello/py.typed", from = "src" },
 ]
 
 
