@@ -28,18 +28,24 @@ jobs:
         python-version: ${{ matrix.python-version }}
         cache: "poetry"
     - run: poetry install --no-interaction --with docs
-    - run: poetry add pytest pytest-cov black flake8 --no-interaction
+    - run: poetry add pytest pytest-cov black flake8 isort mypy --no-interaction
 
     - name: Test with pytest
       run: poetry run pytest --cov src --cov-report xml
 
     - name: Run black linter
-      run: poetry run black src
+      run: poetry run black src --check --verbose
 
     - name: Run flake8 linter
       run:
-        poetry run flake8 . --exclude '.github','.venv','.pytest_cache' --max-complexity=10
+        poetry run flake8 . --exclude '.*' --max-complexity=10
         --max-line-length=120 --statistics
+
+    - name: Run isort
+      run: poetry run isort --profile black --check-only .
+
+    - name: Run mypy
+      run: poetry run mypy -v
 
     - name: Build package
       run: poetry build

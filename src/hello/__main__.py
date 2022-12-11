@@ -1,6 +1,7 @@
-from src.hello.world import HelloWorld
+from hello.world import HelloWorld
 
-def main():
+
+def main() -> None:
     """
     Facade for the main functionality
     """
